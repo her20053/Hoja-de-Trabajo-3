@@ -16,9 +16,20 @@ public class Controlador {
   public static void main(String[] args) {
       
       vista();
-      generarArchivoNumeros();
-      GnomeSort(listaDesordenada, listaDesordenada.length);
 
+      generarArchivoNumeros();
+      
+      GnomeSort.sort(listaDesordenada, listaDesordenada.length);
+
+      QuickSort.sort(listaDesordenada, 0, listaDesordenada.length - 1);
+      
+      MergeSort.sort(listaDesordenada, 0, listaDesordenada.length - 1);
+
+      RadixSort.sort(listaDesordenada, listaDesordenada.length);
+
+      BubbleSort.sort(listaDesordenada);
+
+      System.out.println(Arrays.toString(listaDesordenada));
 
   }
 
@@ -40,7 +51,6 @@ public class Controlador {
 
 
   }
-
   private static void generarArchivoNumeros(){
 
       System.out.println("\n[Consola] Generando lista de numeros..");
@@ -80,23 +90,8 @@ public class Controlador {
           System.out.println("[Consola] Ocurrio un error.");
           e.printStackTrace();
         }
-  }
-  private static void GnomeSort(int estructura[], int largo){ 
-    int puntero = 0; 
-    while (puntero < largo) { 
-        if (puntero == 0) 
-            puntero++; 
-        if (estructura[puntero] >= estructura[puntero - 1]) 
-            puntero++; 
-        else { 
-            int temporal = 0; 
-            temporal = estructura[puntero]; 
-            estructura[puntero] = estructura[puntero - 1]; 
-            estructura[puntero - 1] = temporal; 
-            puntero--; 
-        } 
-    } 
-    System.out.println(Arrays.toString(estructura));
-} 
 
+        System.out.println("\n\n\n");
+    }
+  
 }
