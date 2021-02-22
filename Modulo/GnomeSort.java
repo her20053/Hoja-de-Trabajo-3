@@ -1,7 +1,10 @@
 package Modulo;
 
-import java.util.Arrays;
-
+/**
+ * Clase Gnome Sort Complejidad del Algoritmo O(n2)
+ * Referencia a la implementacion:
+ * https://www.geeksforgeeks.org/gnome-sort-a-stupid-one/ Contribuido por Mohit Gupta_OMG 
+ */
 public class GnomeSort {
     
     public static void sort(int[] estructura, int largo){ 
@@ -20,7 +23,6 @@ public class GnomeSort {
                 puntero--; 
             } 
         } 
-        System.out.println(Arrays.toString(estructura));
       } 
 
 }

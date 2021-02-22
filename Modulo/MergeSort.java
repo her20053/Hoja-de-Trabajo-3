@@ -1,63 +1,65 @@
 package Modulo;
 
+/**
+ * Clase Merge Sort Complejidad del Algoritmo O(n)
+ * Referencia a la implementacion:
+ * https://www.geeksforgeeks.org/merge-sort/ Contribuido por Mayank Tyagi
+ */
 public class MergeSort 
 { 
-    // Merges two subarrays of arr[]. 
-    // First subarray is arr[l..m] 
-    // Second subarray is arr[m+1..r] 
+    /**
+     * Este metodo combina dos subArrays de las cuales toma como parametro una y crea la segunda
+     * a base de una posicion +1 de la original [ m+1 .. r]
+     * @param arr
+     * @param l
+     * @param m
+     * @param r
+     */
     static void merge(int arr[], int l, int m, int r) 
     { 
-        // Find sizes of two subarrays to be merged 
-        int n1 = m - l + 1; 
-        int n2 = r - m; 
-  
-        /* Create temp arrays */
-        int L[] = new int [n1]; 
-        int R[] = new int [n2]; 
-  
-        /*Copy data to temp arrays*/
-        for (int i=0; i<n1; ++i) 
-            L[i] = arr[l + i]; 
-        for (int j=0; j<n2; ++j) 
-            R[j] = arr[m + 1+ j]; 
-  
-  
-        /* Merge the temp arrays */
-  
-        // Initial indexes of first and second subarrays 
-        int i = 0, j = 0; 
-  
-        // Initial index of merged subarry array 
-        int k = l; 
-        while (i < n1 && j < n2) 
+        // Encontrar el size de las subArrays para ser combinadas:
+        int numero1 = m - l + 1; 
+        int numero2 = r - m; 
+        // Se crean las matrices temporales haciendo referencia a Left y Right
+        int Izquierda[] = new int [numero1]; 
+        int Derecha[] = new int [numero2]; 
+        // Se copia la informacion de la matriz original hacia las temporales:
+        for (int i = 0; i < numero1; ++i) 
+            Izquierda[i] = arr[l + i]; 
+        for (int j = 0; j < numero2; ++j) 
+            Derecha[j] = arr[m + 1+ j]; 
+        // Se crean los indices principales de las subArrays creadas previamente:
+        int iniciali = 0, inicialj = 0; 
+        // Indice principal de la subArray creada
+        int indicek = l; 
+        while (iniciali < numero1 && inicialj < numero2) 
         { 
-            if (L[i] <= R[j]) 
+            if (Izquierda[iniciali] <= Derecha[inicialj]) 
             { 
-                arr[k] = L[i]; 
-                i++; 
+                arr[indicek] = Izquierda[iniciali]; 
+                iniciali++; 
             } 
             else
             { 
-                arr[k] = R[j]; 
-                j++; 
+                arr[indicek] = Derecha[inicialj]; 
+                inicialj++; 
             } 
-            k++; 
+            indicek++; 
+        } 
+        // Copiar los elementos restantes de la array Izquierda si quedan:
+        while (iniciali < numero1) 
+        { 
+            arr[indicek] = Izquierda[iniciali]; 
+            iniciali++; 
+            indicek++; 
         } 
   
-        /* Copy remaining elements of L[] if any */
-        while (i < n1) 
+        // Copiar los elementos restantes de la array Derecha si quedan:
+        while (inicialj < numero2) 
         { 
-            arr[k] = L[i]; 
-            i++; 
-            k++; 
-        } 
-  
-        /* Copy remaining elements of R[] if any */
-        while (j < n2) 
-        { 
-            arr[k] = R[j]; 
-            j++; 
-            k++; 
+            arr[indicek] = Derecha[inicialj]; 
+            inicialj++; 
+            indicek++; 
         } 
     } 
     public static void sort(int arr[], int l, int r) 
@@ -70,17 +72,4 @@ public class MergeSort
             merge(arr, l, m, r); 
         } 
     } 
-  
-
-  
-    // Driver method 
-    // public static void main(String args[]) 
-    // { 
-    //     int arr[] = {12, 11, 13, 5, 6, 7}; 
-  
-  
-    //     MergeSort ob = new MergeSort(); 
-    //     ob.sort(arr, 0, arr.length-1); 
-  
-    // } 
 } 
